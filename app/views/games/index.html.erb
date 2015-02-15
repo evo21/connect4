@@ -1,4 +1,11 @@
-<h1>Connect-4 Game Options</h1>
-<p>Welcome, our current user =>  <%= @current_user.username %></p>
+<h1>Connect4 Game Options</h1>
+<p>Welcome =>  <%= @user.username %></p>
 
-<p>You have <%= @current_user.games.count %> game(s) that you're currently playing.</p>
+<p>You have <%= @user.games.count %> game(s) that you're currently playing.<br>
+Click the Game ID below to view your games:</p>
+<p><u>Game #:</u>
+<p>	<% @user.games.each do |g|%>
+		<li><%= link_to "#{g.id}", games_path(@user) %> ## Sam. this is the id of the games that the current user is already playing:</li></p>
+    <% end %><br><br>
+
+<li>You may also => <%= button_to "Start a New Game", new_game_path(@user) %></li>
