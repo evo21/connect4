@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :only => [:join, :move]
 
   def index
   	@user = current_user
@@ -20,11 +20,21 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     col = params[:col].to_i
     row = params[:row].to_i
-    @game.board[row][col] = 'R'
+    if @game.turn_count.odd?
+      @game.board[row][col] = 'R'
+    else
+      @game.board[row][col] = 'B'
+    end
+    @game.turn_count += 1
     @game.save
+    binding.pry
     redirect_to game_path(@game)
-  end
+  end 
 
   def join
+    @game = Game.find(params[:id])
+    @game.player_id_black = current_user.id
+    @game.save
+    redirect_to games_path
   end
 end

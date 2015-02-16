@@ -2,7 +2,9 @@ class Game < ActiveRecord::Base
   belongs_to :red_player, :class_name => 'User', :foreign_key => 'player_id_red'
   belongs_to :black_player, :class_name => 'User', :foreign_key => 'player_id_black'
 
-  before_create :init_board
+  # REM for join table:  validates_length_of :users, maximum: 2, message: "can have at most two players"
+
+  before_create :init_board, :init_turn_count
 
   serialize :board
 
@@ -17,6 +19,10 @@ class Game < ActiveRecord::Base
     return numplayers
   end
 
+  def init_turn_count
+    self.turn_count = 1
+  end
+
   def init_board
   	#  xxxxxxx
   	#  xxxxxxx
@@ -27,8 +33,8 @@ class Game < ActiveRecord::Base
   	self.board = Array.new
   	6.times do 
   	  self.board << Array.new(7)
-  	end
-  end
+  	  end
+    end
 end
 
  
