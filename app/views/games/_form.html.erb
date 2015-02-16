@@ -1,0 +1,14 @@
+<%= form_for @game, url: {action: "create"} do |f| %>
+
+<div class ="game-color-radios">
+	<%= f.radio_button :player_id_red, "Play Red Game Pieces" %>
+    <%= f.label :player_id_red, "Play Red Game Pieces", value: @current_user.id %>
+    <%= f.radio_button :player_id_black, "Play Black Game Pieces" %>
+    <%= f.label :player_id_red, "Play Black Game Pieces", value: @current_user.id %>
+</div>
+
+<div class="actions">
+  <%=f.submit %>
+</div>
+
+<%end%>
