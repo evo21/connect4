@@ -7,13 +7,5 @@ Take me to => <%= link_to "My Games", games_path %>
 
 <br>
 
-<p>All Other Users:</p>
-
-<p>	<% @all_users.each do |u|%>
-		<li><%= u.username %>  --   View this User's games => 
-		<%= link_to "#{u.games.size}", games_path(u.id) %></li>
-<% end %>
-</p>
-
 <%= link_to 'Back', :back %> <br>
 <p><%= button_to "Cancel my account", user_path(@current_user), data: { confirm: "Are you sure?" }, method: :delete, notice: 'User Account Deleted.' %></p>

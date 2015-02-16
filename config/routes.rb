@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :destroy]
-  resources :games, except: :destroy
+  resources :games, except: :destroy do
+    get 'move', on: :member
+    get 'join', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

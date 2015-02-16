@@ -3,9 +3,20 @@
 
 <p>You have <%= @user.games.count %> game(s) that you're currently playing.<br>
 Click the Game ID below to view your games:</p>
-<p><u>Game #:</u>
+<u>Game #:</u><br>
 <p>	<% @user.games.each do |g|%>
-		<li><%= link_to "#{g.id}", games_path(@user) %> ## Sam. this is the id of the games that the current user is already playing:</li></p>
+		<li><%= "#{g.id}" %>  =>  
+		<%= link_to "View/Play Game", game_path(g.id) %> </li></p>
     <% end %><br><br>
 
-<li>You may also => <%= button_to "Start a New Game", new_game_path(@user) %></li>
+<li>You may also => <%= link_to "Start a New Game", new_game_path %></li>
+
+
+<h2> List of all Games </h2>
+<u>Game #:</u><br>
+<% @games.each do |g| %>
+ | <%= g.id %>  |   <%= "Players needed: #{2 - g.number_of_players}" %>
+ <b> <<<%= link_to "Join this game", join_game_path(g.id) %></b>
+<%= "<< You're already playing this game" if g.user_playing?(current_user) %>
+<br>
+<% end %>

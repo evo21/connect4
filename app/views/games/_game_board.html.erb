@@ -1,0 +1,27 @@
+<hr>
+
+This is the gameboard partial for 
+<%= game.id %>
+<hr>
+
+Red Player: <%= game.red_player.try(:username) %>
+Black Player: <%= game.black_player.try(:username) %>
+
+<h4>Gameboard:</h4>
+<% rowindex = 0 %>
+
+<% game.board.each do |row| %>
+  <% columnindex = 0 %>
+
+  <% row.each do |col| %>
+    <% if col != nil %>
+    <%= col %>
+    <% else %>
+    <%= link_to "X", move_game_path(game, :row => rowindex, :col => columnindex) %>
+    <% end %>
+    <% columnindex = columnindex + 1 %>
+  <% end %>
+
+  <% rowindex = rowindex + 1 %>
+  <br>
+<% end %>
