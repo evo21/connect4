@@ -1,0 +1,13 @@
+ 
+<ul> 
+    <li><%=@game.row 1 %></li>
+    <li><%=@game.row 2 %></li>
+    <li><%=@game.row 3 %></li>
+    <li><%=@game.row 4 %></li>
+    <li><%=@game.row 5 %></li>
+    <li><%=@game.row 6 %></li>
+ </ul> 
+
+
+<%= button_to "move" , [@game.id], params: { :column => 1} , :method => :put %>
+<%binding.pry%>

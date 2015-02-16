@@ -1,2 +1,6 @@
 <h1>Games#show</h1>
 <p>Find me in app/views/games/show.html.erb</p>
+   
+  
+<%binding.pry %>
+  <%= render "board" , object: @game(current_user) %>

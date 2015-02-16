@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+         
   
   def email_required?
     false
@@ -21,8 +23,8 @@ class User < ActiveRecord::Base
   end
 
   def games
-    red_games + black_games
-  end
+     red_games + black_games
+   end
 
   def all_games  # Brit's Slack eg. alt
     Game.where("player_id_black = ? OR player_id_red = ?", self.id, self.id)

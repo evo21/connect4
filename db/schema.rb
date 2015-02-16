@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150213003429) do
     t.integer  "player_id_red"
     t.integer  "player_id_black"
     t.integer  "turn_count"
-    t.string   "board"
+    t.text     "board"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
