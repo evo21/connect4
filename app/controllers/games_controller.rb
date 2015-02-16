@@ -27,6 +27,7 @@ class GamesController < ApplicationController
     end
     @game.turn_count += 1
     @game.save
+    binding.pry
     redirect_to game_path(@game)
   end 
 
@@ -34,7 +35,6 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.player_id_black = current_user.id
     @game.save
-    binding.pry
     redirect_to games_path
   end
 end
