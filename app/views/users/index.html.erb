@@ -1,7 +1,7 @@
 <h1>User Menu</h1>
 
 <li>Current User is ==>   <%= @current_user.username %>     |     
-<%= button_to "Sign-out", user_path(@current_user), method: :delete %></li><br>
+<%= button_to "Sign-out", destroy_user_session_path, method: :delete %></li><br>
 
 Take me to => <%= link_to "My Games", games_path %>
 
