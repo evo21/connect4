@@ -23,6 +23,22 @@ class Game < ActiveRecord::Base
     self.turn_count = 1
   end
 
+  def which_row(col)
+    # given a column index, returns the available row index for the next move
+    # if the bottom right is filled, 5,6, then we want 4,6 as the next location
+    # so this function should return 4
+
+    # if a column is empty, then this function should return 5 (the bottom row)
+
+    # if a column is full, the the function should return nil
+
+    # the column is the SECOND index of this array and does not change
+    5.downto(0) do |i|
+      return i if self.board[i][col] == nil
+    end
+    return nil  # if we get this far, the whole column's full
+  end
+
   def init_board
   	#  xxxxxxx
   	#  xxxxxxx

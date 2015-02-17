@@ -8,6 +8,7 @@ Red Player: <%= game.red_player.try(:username) %>
 Black Player: <%= game.black_player.try(:username) %>
 
 <h4>Gameboard:</h4>
+<div class="game-board">
 <% rowindex = 0 %>
 
 <% game.board.each do |row| %>
@@ -17,7 +18,7 @@ Black Player: <%= game.black_player.try(:username) %>
     <% if col != nil %>
     <%= col %>
     <% else %>
-    <%= link_to "X", move_game_path(game, :row => rowindex, :col => columnindex) %>
+    <%= link_to "X", move_game_path(game, :col => columnindex) %>
     <% end %>
     <% columnindex = columnindex + 1 %>
   <% end %>

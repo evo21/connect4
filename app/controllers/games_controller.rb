@@ -17,17 +17,32 @@ class GamesController < ApplicationController
   end
 
   def move
+    @user = current_user
     @game = Game.find(params[:id])
     col = params[:col].to_i
-    row = params[:row].to_i
+    row = @game.which_row(col)
+
+
     if @game.turn_count.odd?
-      @game.board[row][col] = 'R'
+      if @user.id == @game.player_id_red
+        @game.board[row][col] = 'R'
+        @game.turn_count += 1
+      elsif
+        @user.id == @game.player_id_black        
+        @game.board[row][col] = nil
+      end
     else
-      @game.board[row][col] = 'B'
+      if @user.id == @game.player_id_black
+        @game.board[row][col] = 'B'
+        @game.turn_count += 1
+      elsif
+        @user.id == @game.player_id_red
+        @game.board[row][col] = nil
+      end
     end
-    @game.turn_count += 1
+
     @game.save
-    binding.pry
+
     redirect_to game_path(@game)
   end 
 
